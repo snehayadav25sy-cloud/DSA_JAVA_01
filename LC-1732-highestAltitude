@@ -23,3 +23,18 @@ class Solution {
 
     
 }
+
+// optimal approach
+class Solution {
+    public int largestAltitude(int[] gain) {
+        int current = 0;       // starting altitude
+        int maxAltitude = 0;   // track the highest altitude
+
+        for (int g : gain) {
+            current += g;                     // update altitude
+            maxAltitude = Math.max(maxAltitude, current); 
+        }
+
+        return maxAltitude;
+    }
+}
