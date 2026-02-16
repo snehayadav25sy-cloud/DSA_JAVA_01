@@ -9,7 +9,7 @@ class Solution {
         if(nums[i]==0){
             count0++;
         }else if (nums[i]==1){
-            count1++;
+            count1++; 
         }else{
             count2++;
         }
