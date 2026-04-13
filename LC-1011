@@ -1,0 +1,32 @@
+class Solution {
+    public int shipWithinDays(int[] weights, int days) {
+        int left = 0, right = 0;   // initialize both
+        for (int w : weights) {
+            left = Math.max(left, w);  // minimum possible capacity
+            right += w;                // maximum possible capacity
+        }
+
+        // binary search
+        while (left < right) {
+            int mid = left + (right - left) / 2;
+            if (checkship(weights, days, mid)) {
+                right = mid;   // mid works, try smaller
+            } else {
+                left = mid + 1; // mid too small, increase
+            }
+        }
+        return left;  // final answer
+    }
+
+    private boolean checkship(int[] weights, int days, int capacity) {
+        int current = 0, requiredDays = 1;
+        for (int w : weights) {
+            if (current + w > capacity) {
+                requiredDays++;
+                current = 0;
+            }
+            current += w;
+        }
+        return requiredDays <= days;
+    }
+}
