@@ -15,7 +15,7 @@ class Solution {
         if(currentprofit>profit){
             profit = currentprofit;
         }
-
+  
        }
         return profit;
     }
