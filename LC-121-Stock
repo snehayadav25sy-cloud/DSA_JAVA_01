@@ -10,7 +10,7 @@ class Solution {
             min = prices[i];
              
         }  
-
+  
         int currentprofit=prices[i]-min;
         if(currentprofit>profit){
             profit = currentprofit;
