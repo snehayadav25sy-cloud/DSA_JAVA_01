@@ -5,7 +5,7 @@ class Solution {
         ListNode newHead = reverseLinkedList(head.next);
         head.next.next = head;
         head.next = null;
-        return newHead;
+        return newHead;  
     }
 
     public boolean isPalindrome(ListNode head) {
