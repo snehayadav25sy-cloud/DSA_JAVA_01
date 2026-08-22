@@ -1,0 +1,35 @@
+import java.util.*;
+class Solution {
+    public int calPoints(String[] operations) {
+    Deque <Integer> dq = new ArrayDeque<>();
+
+    for(String op : operations){
+        switch(op){
+            case "C":
+              dq.pop();
+              break;
+
+            case"D":
+              dq.push(dq.peek()*2);
+              break;
+
+            case"+":
+              int first = dq.pop();
+              int second = dq.peek();
+              dq.push(first);
+              dq.push(first+second);
+              break;
+
+            default: 
+               dq.push(Integer.parseInt(op));  
+    
+        }
+    }
+     int total = 0;
+        for (int score : dq) {
+            total += score;
+        }
+        return total;
+        
+    }
+}
