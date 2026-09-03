@@ -1,0 +1,15 @@
+class Solution {
+    public int majorityElement(int[] nums) {
+       int curr = 0;
+       int cnt= 0;
+
+       for(int num:nums){
+        if(cnt==0){
+            curr = num;
+        }
+        cnt += (num == curr)? 1:-1;
+       }
+
+       return curr;
+    }
+}
