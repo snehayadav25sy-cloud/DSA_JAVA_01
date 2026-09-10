@@ -13,7 +13,7 @@ class Solution {
                 right = mid;   // mid works, try smaller 
             } else {
                 left = mid + 1; // mid too small, increase
-            }
+            }  
         }
         return left;  // final answer
     }
