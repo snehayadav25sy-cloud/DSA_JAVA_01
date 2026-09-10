@@ -10,7 +10,7 @@ class Solution {
         while (left < right) {
             int mid = left + (right - left) / 2;
             if (checkship(weights, days, mid)) {
-                right = mid;   // mid works, try smaller
+                right = mid;   // mid works, try smaller 
             } else {
                 left = mid + 1; // mid too small, increase
             }
