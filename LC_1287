@@ -1,0 +1,31 @@
+class Solution {
+    public int smallestDivisor(int[] nums, int threshold) {
+        int n = nums.length;
+        int high = Integer.MIN_VALUE;
+        int low = Integer.MAX_VALUE;
+        for(int p : nums){
+            high = Math.max(p , high);
+            low = Math.min(p,low);
+        }
+
+        int ans = high;
+
+        while(low<=high){
+            int mid =(low+high)/2;
+            int sum=0;
+
+            for(int d:nums){
+                sum+= (int)Math.ceil((double)d/mid);
+            }
+            if(sum<=threshold){
+                ans = mid;
+                high = mid-1;
+                
+            }else{
+                low= mid+1;
+            }
+        }
+
+        return low;
+    }
+}
