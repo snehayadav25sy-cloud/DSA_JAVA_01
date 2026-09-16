@@ -1,0 +1,47 @@
+class Solution {
+    private boolean possible(int[] bloomDay , int day , int m , int k){
+        int n = bloomDay.length;
+        int cnt = 0; int bokey =0;
+        for(int i = 0 ; i<n ; i++){
+            if(bloomDay[i]<=day){
+                cnt++;
+                if(cnt == k ){
+                    bokey++;
+                    cnt=0;
+                }
+                
+            }else{
+                cnt=0;
+            }
+        }
+        if(bokey >= m) return true;
+        else return false;
+    }
+    public int minDays(int[] bloomDay, int m, int k) {
+         
+
+        int n = bloomDay.length;
+        if((long)m * k > n) return -1;
+        int low = Integer.MAX_VALUE;
+        int high = Integer.MIN_VALUE;
+        for(int i = 0 ; i < n ; i++){
+            low = Math.min(low , bloomDay[i]);
+            high = Math.max(high , bloomDay[i]);
+        }
+
+        int ans = high;
+
+        while(low<=high){
+            int mid = (low+high)/2;
+            if(possible(bloomDay , mid , m ,k)==true){
+                ans = mid;
+                high= mid-1;
+            }else{
+                low=mid+1;
+            }
+        }
+        return low;
+
+        
+    }
+}
