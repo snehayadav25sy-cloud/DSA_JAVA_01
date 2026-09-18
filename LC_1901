@@ -1,0 +1,42 @@
+class Solution {
+
+    private int findMaxRow(int[][] mat , int n , int col){
+        int idx = -1;
+        int max = -1;
+        for(int i =0 ; i<n ; i++){
+            if(mat[i][col]>max){
+                max = mat[i][col];
+                idx = i;
+            }else{
+                max = mat[i][col];
+            }
+        }
+
+        return idx;
+    }
+    public int[] findPeakGrid(int[][] mat) {
+        int n = mat.length;
+        int m = mat[0].length;
+        int low = 0;
+        int high = m-1;
+
+        while(low<=high){
+            int mid = (low+high)/2;
+
+            int maxrow = findMaxRow(mat , n , mid);
+            int left = (mid-1>=0) ? mat[maxrow][mid-1]:-1;
+            int right = (mid+1<m) ? mat[maxrow][mid+1]:-1;
+
+            if(mat[maxrow][mid]>left && mat[maxrow][mid]>left){
+                return new int []{maxrow , mid};
+            }else if(mat[maxrow][mid]<left){
+                high = mid-1;
+            }else {
+                low = mid+1;
+            }
+            
+        }
+        return new int[]{-1,-1};
+        
+    }
+}
