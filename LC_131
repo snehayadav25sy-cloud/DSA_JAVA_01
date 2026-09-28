@@ -1,0 +1,37 @@
+class Solution {
+    public List<List<String>> partition(String s) {
+        List<List<String>> ans = new ArrayList<>();
+        List<String> curr = new ArrayList<>();
+        int index = 0;
+        int n = s.length();
+        Recursion(index , s , ans , curr , n);
+        return ans;
+    }
+
+    public void Recursion(int index , String s , List<List<String>> ans , List<String> curr , int n ){
+        if(index == n){
+            ans.add(new ArrayList<>(curr));
+            return;
+        }
+
+        for(int i = index ; i<n ; i++){
+            if(isPalindrome(s , index , i)){
+                curr.add(s.substring(index , i+1));
+                Recursion(i+1 , s , ans , curr , n);
+                curr.remove(curr.size()-1);
+            }
+        }
+    }
+
+    boolean isPalindrome(String s , int start , int end){
+        while(start<=end){
+            if(s.charAt(start++)!=s.charAt(end--)){
+                return false;
+            }
+ 
+        }
+        return true;
+    }
+
+
+}
