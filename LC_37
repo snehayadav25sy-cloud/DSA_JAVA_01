@@ -1,0 +1,54 @@
+class Solution {
+    public void solveSudoku(char[][] board) {
+        Backtrack(board);
+        
+    }
+
+    public boolean Backtrack(char[][] board){
+
+        for(int r = 0; r<9 ; r++){
+            for(int c = 0 ; c<9 ; c++){
+                if(board[r][c]=='.'){
+                  for(int num = 1 ; num<=9 ; num++){
+                     if(isSafe(r , c , board , num)){
+                     board[r][c]=(char)(num+'0');
+                     if (Backtrack(board)) {
+                        return true ;
+                     }
+                     board[r][c]='.';
+                }  
+            }
+            return false;
+        }
+
+     }
+    }
+
+    return true;
+    }
+
+
+    public boolean isSafe(int row , int col , char[][] board , int num){
+
+      // check row , means iterate through each col using j
+      for(int j = 0 ; j<9 ; j++){
+        if(board[row][j]==(char)(num+'0'))return false;
+      }
+
+      for(int i = 0 ; i<9 ; i++){
+        if(board[i][col]== (char)(num+'0')) return false;
+      }
+
+      int startrow = (row/3)*3;
+      int startcol = (col/3)*3;
+
+      for(int i = startrow ; i<startrow+3 ; i++){
+        for(int j = startcol ; j<startcol+3 ; j++){
+            if(board[i][j]== (char)(num + '0')) return false;
+        }
+      }
+
+      return true;
+        
+    }
+}
